@@ -7,7 +7,7 @@ $reallyBadStuff = @"
 
 $kindaBadStuff = @"
 \s.nuget\NuGet.exe = .nuget\NuGet.exe
-\s*.nuget\NuGet.targets = .nuget\NuGet.targets
+\s\*.nuget\NuGet.targets = .nuget\NuGet.targets
 "@
 
 $badStuff = @"
