@@ -37,7 +37,7 @@ ls -Recurse -include 'NuGet.exe','NuGet.targets' |
 
 ls -Recurse -include *.csproj, *.sln, *.fsproj, *.vbproj |
   foreach {
-    $content = cat $_.FullName -Raw
+    $content = cat $_.FullName | Out-String
     $origContent = $content
     $content = $content.Replace($kindaBadStuff, "")
     $content = $content.Replace($reallyBadStuff, "")
