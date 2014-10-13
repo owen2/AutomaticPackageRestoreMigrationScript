@@ -11,12 +11,7 @@ $kindaBadStuff = @"
 "@
 
 $badStuff = @"
-\s*<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-\s*<PropertyGroup>
-\s*<ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-\s*</PropertyGroup>
-\s*<Error Condition="!Exists('`$(SolutionDir)\.nuget\NuGet.targets')" Text="`$([System.String]::Format('`$(ErrorText)', '`$(SolutionDir)\.nuget\NuGet.targets'))" />
-\s*</Target>
+\s*<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">(.|\n)*?</Target>
 "@
 
 $hintPathPattern = @"
@@ -37,11 +32,11 @@ ls -Recurse -include 'NuGet.exe','NuGet.targets' |
 
 ls -Recurse -include *.csproj, *.sln, *.fsproj, *.vbproj |
   foreach {
-    $content = cat $_.FullName -Raw
+    $content = cat $_.FullName | Out-String
     $origContent = $content
     $content = $content.Replace($kindaBadStuff, "")
     $content = $content.Replace($reallyBadStuff, "")
-    $content = $content.Replace($badStuff, "")
+    $content = $content -replace $badStuff, ""
     $content = $content -replace $hintPathPattern, "<HintPath>`$(SolutionDir)packages"
     if ($origContent -ne $content)
     {	
