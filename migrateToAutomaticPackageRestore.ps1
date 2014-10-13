@@ -12,9 +12,7 @@ $listOfBadStuff = @(
 \s*<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">(.|\n)*?</Target>
 "@
 )
-$hintPathPattern = @"
-<HintPath>(\d|\w|\s|\.|\\)*packages
-"@
+
 
 #######################
 # Delete NuGet.targets
@@ -35,7 +33,6 @@ ls -Recurse -include *.csproj, *.sln, *.fsproj, *.vbproj |
     foreach($badStuff in $listOfBadStuff){
         $content = $content -replace $badStuff, ""
     }
-    $content = $content -replace $hintPathPattern, "<HintPath>`$(SolutionDir)packages"
     if ($origContent -ne $content)
     {	
         $content | out-file -encoding "UTF8" $_.FullName
