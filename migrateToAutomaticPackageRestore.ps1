@@ -2,12 +2,12 @@
 # Regex Patterns for Really Bad Things!
 $listOfBadStuff = @(
 @"
-\s<Import Project="`$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('`$(SolutionDir)\.nuget\NuGet.targets')" />
+\s*<Import Project="\$\(SolutionDir\)\\\.nuget\\NuGet\.targets".*?/>
 "@,
 
 @"
-\s.nuget\NuGet.exe = .nuget\NuGet.exe
-\s\*.nuget\NuGet.targets = .nuget\NuGet.targets
+\s*\.nuget\\NuGet\.exe = \.nuget\\NuGet\.exe
+\s*\*\.nuget\\NuGet\.targets = \.nuget\\NuGet\.targets
 "@,
 
 @"
