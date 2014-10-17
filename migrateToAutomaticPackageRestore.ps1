@@ -1,20 +1,12 @@
 ########################################
 # Regex Patterns for Really Bad Things!
 $listOfBadStuff = @(
-@"
-\s<Import Project="`$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('`$(SolutionDir)\.nuget\NuGet.targets')" />
-"@,
-
-@"
-\s.nuget\NuGet.exe = .nuget\NuGet.exe
-\s\*.nuget\NuGet.targets = .nuget\NuGet.targets
-"@,
-
-@"
-\s*<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">(.|\n)*?</Target>
-"@
+	#sln regex
+	"\s*(\.nuget\\NuGet\.(exe|targets)) = \1",
+	#*proj regexes
+	"\s*<Import Project=""\$\(SolutionDir\)\\\.nuget\\NuGet\.targets"".*?/>",
+	"\s*<Target Name=""EnsureNuGetPackageBuildImports"" BeforeTargets=""PrepareForBuild"">(.|\n)*?</Target>"
 )
-
 
 #######################
 # Delete NuGet.targets
