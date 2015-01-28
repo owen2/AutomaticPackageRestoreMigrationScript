@@ -1,7 +1,5 @@
 # Owen's bag of nuget related scripts!
 
-## migateToAutomaticPackageRestoreNotUsingTFS.ps1
-
 ## migateToAutomaticPackageRestore.ps1
 
 In short, it reverses "Enable Nuget Package Restore", allowing the newer package restore method to work. 
@@ -11,7 +9,6 @@ In Visual Studio 2013, automatic package restore part of the IDE (and the TFS bu
 You can use this script to remove nuget.exe, nuget.targets, and all project and solution references to nuget.targets so you can take advantage of Automatic Package Restore. It more or less automates the process described [here](http://docs.nuget.org/docs/workflows/migrating-to-automatic-package-restore)
 
 It will recurse through the directory you run the script from and do it to any solutions that may be in there somewhere. Be careful and have fun! (not responsible for anything that breaks)
-
 
 ## migateToAutomaticPackageRestoreNotUsingTFS.ps1
 
