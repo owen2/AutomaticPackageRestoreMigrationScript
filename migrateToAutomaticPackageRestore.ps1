@@ -21,7 +21,7 @@ ls -Recurse -include 'NuGet.exe','NuGet.targets' |
 #########################################################################################
 # Fix Project and Solution Files to reverse damage done by "Enable NuGet Package Restore
 
-ls -Recurse -include *.csproj, *.sln, *.fsproj, *.vbproj |
+ls -Recurse -include *.csproj, *.sln, *.fsproj, *.vbproj *.wixproj |
   foreach {
     $content = cat $_.FullName | Out-String
     $origContent = $content
