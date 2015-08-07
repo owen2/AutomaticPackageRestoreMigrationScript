@@ -1,6 +1,6 @@
 # Owen's bag of nuget related scripts!
 
-## migateToAutomaticPackageRestore.ps1
+## migrateToAutomaticPackageRestore.ps1
 
 In short, it reverses "Enable Nuget Package Restore", allowing the newer package restore method to work. 
 
