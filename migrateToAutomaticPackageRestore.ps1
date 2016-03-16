@@ -23,6 +23,7 @@ ls -Recurse -include 'NuGet.exe','NuGet.targets' |
 
 ls -Recurse -include *.csproj, *.sln, *.fsproj, *.vbproj, *.wixproj, *.vcxproj |
   foreach {
+    sp $_ IsReadOnly $false
     $content = cat $_.FullName | Out-String
     $origContent = $content
     foreach($badStuff in $listOfBadStuff){
