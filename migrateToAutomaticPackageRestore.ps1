@@ -1,16 +1,24 @@
+Param(
+   [switch]$RemoveSolutionDirProperty
+)
+
 . (Join-Path $PSScriptRoot "Get-FileEncoding.ps1")
 
 ########################################
 # Regex Patterns for Really Bad Things!
-$listOfBadStuff = @(
+$listOfBadStuff = New-Object System.Collections.ArrayList
+[void]$listOfBadStuff.AddRange((
 	#sln regex
 	"\s*(\.nuget\\NuGet\.(exe|targets)) = \1",
 	#*proj regexes
 	"\s*<Import Project=""\$\(SolutionDir\)\\\.nuget\\NuGet\.targets"".*?/>",
-	"\s*<Target Name=""EnsureNuGetPackageBuildImports"" BeforeTargets=""PrepareForBuild"">(.|\n)*?</Target>"
-	"\s*<RestorePackages>\w*</RestorePackages>"
-    "\s*<SolutionDir Condition=""\$\(SolutionDir\) == '' Or \$\(SolutionDir\) == '\*Undefined\*'"">\.\.\\</SolutionDir>"
-)
+	"\s*<Target Name=""EnsureNuGetPackageBuildImports"" BeforeTargets=""PrepareForBuild"">(.|\n)*?</Target>",
+	"\s*<RestorePackages>\w*</RestorePackages>"))
+
+
+if ($RemoveSolutionDirProperty) {
+[void]$listOfBadStuff.Add("\s*<SolutionDir Condition=""\$\(SolutionDir\) == '' Or \$\(SolutionDir\) == '\*Undefined\*'"">\.\.\\</SolutionDir>")
+}
 
 #######################
 # Delete NuGet.targets
