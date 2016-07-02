@@ -5,7 +5,7 @@ $listOfBadStuff = @(
 	"\s*(\.nuget\\NuGet\.(exe|targets)) = \1",
 	#*proj regexes
 	"\s*<Import Project=""\$\(SolutionDir\)\\\.nuget\\NuGet\.targets"".*?/>",
-	"\s*<Target Name=""EnsureNuGetPackageBuildImports"" BeforeTargets=""PrepareForBuild"">(.|\n)*?</Target>"
+	"\s*<Target Name=""EnsureNuGetPackageBuildImports"" BeforeTargets=""PrepareForBuild"">(.|\n)*?</Target>",
 	"\s*<RestorePackages>\w*</RestorePackages>"
 )
 
