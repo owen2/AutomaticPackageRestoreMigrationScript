@@ -10,6 +10,10 @@ You can use this script to remove nuget.exe, nuget.targets, and all project and 
 
 It will recurse through the directory you run the script from and do it to any solutions that may be in there somewhere. Be careful and have fun! (not responsible for anything that breaks)
 
+## migateToAutomaticPackageRestoreNotUsingTFS.ps1
+
+Basically the same as migateToAutomaticPackageRestore.ps1, except it removes the entire .nuget folder from disk and solution file.
+
 ## FixHintPaths.ps1
 
 There are some intersting scenarios where you might end up with troubles related to incorrect hintpaths in the project files which reference nuget packages that were installed while the project was loaded as part of a different solution. You might see something like `<HintPath>C:\Users\SomeOtherUserName\My Documents\...` or `<HintPath>..\..\SomeOtherSolution\packages\...` . This could be caused by a bug in nuget, or more likely, a strange organization of your folder structure.  This script is a quick fix for those situations. It replaces the incorrect paths with a reference to the `$(SolutionDir)\packages`, which is almost always where Automatic Package Restore puts restored packages. If you find yourself needing this script often, it may be a smell indicating that you may have problems with how your source code is organized. 
