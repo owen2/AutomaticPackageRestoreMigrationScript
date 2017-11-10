@@ -1,9 +1,10 @@
 # Owen's bag of nuget related scripts!
 
-## migrateToAutomaticPackageRestore.ps1
-### Note
+## Note
 
-Some years have passed and NuGet is now a part of msbuild and this tool is only useful for projects created before Visual Studio 2015. I haven't tested this to see if it works on the newest project types in VS 2017, but those projects should never encounter the condition where you would need this script. Be careful. 
+Some years have passed and NuGet is now a part of msbuild and this tool is only useful for projects created before Visual Studio 2015. I haven't tested this to see if it works on the newest project formats in VS 2017, but those projects should never encounter the condition where you would need this script. Be careful. 
+
+## migrateToAutomaticPackageRestore.ps1
 
 In short, it reverses "Enable Nuget Package Restore", allowing the newer package restore method to work. 
 
